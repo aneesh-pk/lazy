@@ -8,28 +8,30 @@ class Header extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            query: null,
+            query: "",
             searchActive: false
         }
     }
 
     render() {
         const handleSearchClick = () => {
-            if(!this.state.searchActive){
+            if (!this.state.searchActive) {
                 this.setState({
                     searchActive: true,
-                    query: null
+                    query: ""
                 });
-            }else{
+            } else {
                 this.setState({
                     searchActive: false,
-                    query: null
+                    query: ""
                 });
             }
         }
 
-        const handleSearchInput = () => {
-            
+        const handleSearchInput = (e) => {
+            this.setState({
+                query: e.target.value
+            })
         }
 
         return (
@@ -44,7 +46,8 @@ class Header extends Component {
                     <input type="text"
                         className={this.state.searchActive ? "search active" : "search"}
                         onChange={handleSearchInput}
-                        >
+                        value={this.state.query}
+                    >
                     </input>
                     <img src={searchImg} className="search-button active" alt="search" onClick={handleSearchClick} />
                 </div>

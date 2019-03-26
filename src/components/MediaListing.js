@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import '../App.css';
 import MediaEntry from "./MediaEntry";
+import { connect } from "react-redux";
+import { fetchMedia } from "../actions";
 import _ from "lodash";
 import InfiniteScroll from 'react-infinite-scroller';
 
@@ -11,30 +13,30 @@ class MediaListing extends Component {
             mediaList: {},
             hasMoreData: true
         };
+        const { fetchMedia } = this.props;
     }
 
     loadFunc = async (page) => {
-        console.log("loading...");
-
         let requestData = {
             "title": "Romantic Comedy",
             "page": page,
             "size": 20
         }
-        let mediaData = await this.getData((process.env.REACT_APP_API_URL + "get-media"), requestData);
-        if (mediaData["page-size-returned"] < mediaData["page-size-requested"]) {
-            this.setState({ hasMoreData: false });
-        }
-        if (mediaData && mediaData["content-items"] && mediaData["content-items"].content && mediaData["content-items"].content.length > 0) {
-            let tmpMediaList = _.cloneDeep(this.state.mediaList);
-            mediaData["content-items"].content.map((entry) => {
-                if (typeof tmpMediaList[entry._id] == "undefined") {
-                    tmpMediaList[entry._id] = entry;
-                }
-            });
-            if (!_.isEqual(tmpMediaList, this.state.mediaList))
-                this.setState({ mediaList: tmpMediaList })
-        }
+        let mediaData = fetchMedia((process.env.REACT_APP_API_URL + "get-media"), requestData);
+        // let mediaData = await this.getData((process.env.REACT_APP_API_URL + "get-media"), requestData);
+        // if (mediaData["page-size-returned"] < mediaData["page-size-requested"]) {
+        //     this.setState({ hasMoreData: false });
+        // }
+        // if (mediaData && mediaData["content-items"] && mediaData["content-items"].content && mediaData["content-items"].content.length > 0) {
+        //     let tmpMediaList = _.cloneDeep(this.state.mediaList);
+        //     mediaData["content-items"].content.map((entry) => {
+        //         if (typeof tmpMediaList[entry._id] == "undefined") {
+        //             tmpMediaList[entry._id] = entry;
+        //         }
+        //     });
+        //     if (!_.isEqual(tmpMediaList, this.state.mediaList))
+        //         this.setState({ mediaList: tmpMediaList })
+        // }
 
     }
 
@@ -79,4 +81,4 @@ class MediaListing extends Component {
     }
 }
 
-export default MediaListing;
+export default connect(null, {fetchMedia})(MediaListing);
