@@ -8,7 +8,7 @@ class MediaListing extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            mediaList: [],
+            mediaList: {},
             hasMoreData: true
         };
     }
@@ -26,7 +26,14 @@ class MediaListing extends Component {
             this.setState({ hasMoreData: false });
         }
         if (mediaData && mediaData["content-items"] && mediaData["content-items"].content && mediaData["content-items"].content.length > 0) {
-            this.setState({ mediaList: [...this.state.mediaList, ...mediaData["content-items"].content] })
+            let tmpMediaList = _.cloneDeep(this.state.mediaList);
+            mediaData["content-items"].content.map((entry) => {
+                if (typeof tmpMediaList[entry._id] == "undefined") {
+                    tmpMediaList[entry._id] = entry;
+                }
+            });
+            if (!_.isEqual(tmpMediaList, this.state.mediaList))
+                this.setState({ mediaList: tmpMediaList })
         }
 
     }
@@ -61,7 +68,7 @@ class MediaListing extends Component {
                         threshold={600}
                         initialLoad={true}
                     >
-                        {this.state.mediaList.map((entry, entry_index) => {
+                        {Object.values(this.state.mediaList).map((entry, entry_index) => {
                             return <MediaEntry key={entry_index} name={entry.name} poster_image={entry.poster_image} />
                         })}
 

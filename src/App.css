@@ -60,3 +60,11 @@ body {
     margin: 0 auto !important;
     padding-top: 228px !important;
 }
+
+.search, .search-button{
+    display: none;
+}
+
+.active{
+    display: inline-block;
+}
