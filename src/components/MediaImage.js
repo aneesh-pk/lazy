@@ -1,12 +1,21 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
+import LazyLoad from 'react-image-lazy-load';
 import '../App.css';
-import poster1 from "../assets/images/posters/poster1.jpg";
 
 class MediaImage extends Component {
     render() {
+        const handleOnError= (e) => {
+            e.target.src = process.env.REACT_APP_PLACEHOLDER_IMAGE_URL;
+        }
         return (
             <div>
-                <img src={poster1} className="poster-image poster" alt="poster"/>
+                <LazyLoad loaderImage originalSrc={process.env.REACT_APP_IMAGE_BASE_PATH + this.props.poster_image} imageProps={{
+                    src: require('../assets/images/placeholder_for_missing_posters.png'),
+                    alt: "poster",
+                    ref: "image",
+                    className: "poster-image poster"
+                }} />
+                {/* <img src={process.env.REACT_APP_IMAGE_BASE_PATH + this.props.poster_image} className="poster-image poster" alt={process.env.REACT_APP_PLACEHOLDER_IMAGE_URL} onError={(e) => handleOnError(e)}/> */}
             </div>
         );
     }
