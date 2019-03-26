@@ -1,7 +1,7 @@
 {
   "name": "lazy",
   "version": "0.1.0",
-  "homepage": "http://aneesh-pk.github.io/diagnal-react",
+  "homepage": "http://aneesh-pk.github.io/lazy",
   "private": true,
   "dependencies": {
     "lodash": "^4.17.11",
