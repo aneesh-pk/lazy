@@ -8,7 +8,7 @@ class MediaListing extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            mediaList: {},
+            mediaList: [],
             hasMoreData: true
         };
     }
@@ -52,6 +52,7 @@ class MediaListing extends Component {
         return (
             <div className="media-listing">
                 <div className="list-wrapper">
+                    {/* https://www.npmjs.com/package/react-infinite-scroller */}
                     <InfiniteScroll
                         pageStart={0}
                         loadMore={this.loadFunc}
