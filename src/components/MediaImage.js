@@ -12,7 +12,6 @@ class MediaImage extends Component {
                     ref: "image",
                     className: "poster-image poster"
                 }} />
-                {/* <img src={process.env.REACT_APP_IMAGE_BASE_PATH + this.props.poster_image} className="poster-image poster" alt={process.env.REACT_APP_PLACEHOLDER_IMAGE_URL} onError={(e) => handleOnError(e)}/> */}
             </div>
         );
     }

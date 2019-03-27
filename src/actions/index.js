@@ -22,11 +22,13 @@ export const fetchMedia = (postData) => dispatch => {
 };
 
 export const searchMediaLocal = (query) => dispatch => {
-  dispatch({ type: SEARCH_MEDIA_LOCAL, payload: { query: query, hasMoreData: false} })
+  dispatch({ type: SEARCH_MEDIA_LOCAL, payload: { query: query, hasMoreData: false } })
 };
 
 export const searchMedia = () => dispatch => {
   let query = store.getState().media.query;
+  if (query.trim() === "")
+    return false;
 
   let url = (process.env.REACT_APP_API_URL + "search-media");
   let postData = {
