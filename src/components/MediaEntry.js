@@ -1,4 +1,4 @@
-import React, { Component, lazy, Suspense } from 'react';
+import React, { Component } from 'react';
 import '../App.css';
 // import MediaImagePlaceholder from "./MediaImagePlaceholder";
 // const MediaImage = lazy(() => import("./MediaImage"));

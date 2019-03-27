@@ -4,9 +4,6 @@ import '../App.css';
 
 class MediaImage extends Component {
     render() {
-        const handleOnError= (e) => {
-            e.target.src = process.env.REACT_APP_PLACEHOLDER_IMAGE_URL;
-        }
         return (
             <div>
                 <LazyLoad loaderImage originalSrc={process.env.REACT_APP_IMAGE_BASE_PATH + this.props.poster_image} imageProps={{

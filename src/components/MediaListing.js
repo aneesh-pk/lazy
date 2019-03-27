@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import '../App.css';
 import MediaEntry from "./MediaEntry";
 import { connect } from "react-redux";
-import { fetchMedia } from "../actions";
+import { fetchMedia, searchMedia } from "../actions";
 import _ from "lodash";
 import InfiniteScroll from 'react-infinite-scroller';
 
@@ -10,10 +10,9 @@ class MediaListing extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            mediaList: {},
-            hasMoreData: true
-        };
-        const { fetchMedia } = this.props;
+            query: "",
+        }
+        window.searchedFlag = false;
     }
 
     loadFunc = async (page) => {
@@ -22,40 +21,48 @@ class MediaListing extends Component {
             "page": page,
             "size": 20
         }
-        let mediaData = fetchMedia((process.env.REACT_APP_API_URL + "get-media"), requestData);
-        // let mediaData = await this.getData((process.env.REACT_APP_API_URL + "get-media"), requestData);
-        // if (mediaData["page-size-returned"] < mediaData["page-size-requested"]) {
-        //     this.setState({ hasMoreData: false });
-        // }
-        // if (mediaData && mediaData["content-items"] && mediaData["content-items"].content && mediaData["content-items"].content.length > 0) {
-        //     let tmpMediaList = _.cloneDeep(this.state.mediaList);
-        //     mediaData["content-items"].content.map((entry) => {
-        //         if (typeof tmpMediaList[entry._id] == "undefined") {
-        //             tmpMediaList[entry._id] = entry;
-        //         }
-        //     });
-        //     if (!_.isEqual(tmpMediaList, this.state.mediaList))
-        //         this.setState({ mediaList: tmpMediaList })
-        // }
-
+        this.props.fetchMedia(requestData);
     }
 
-    getData = async (url, data) => {
-        return await fetch(url, {
-            // mode: "cors", // no-cors, cors, *same-origin
-            // credentials: "same-origin", // include, *same-origin, omit
-            method: "POST",
-            cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
-            headers: {
-                "content-Type": "application/json",
-            },
-            body: JSON.stringify(data), // body data type must match "Content-Type" header
-        })
-            .then(response => response.json()) // parses JSON response into native Javascript objects 
-            .catch(err => null);
+    renderFilterdList() {
+        let filtered = [];
+        let filteredList = [];
+        let query = this.props.media.query;
+        let mediaList = this.props.media.mediaList;
+
+        if (query.trim() === "") {
+            filtered = Object.values(mediaList);
+        } else {
+            window.searchedFlag = true;
+            filtered = _.filter(mediaList, (o) => {
+                let string = o.name.toLowerCase();
+                let sub_string = query.toLowerCase();
+                if (string.toLowerCase().indexOf(sub_string) !== -1)
+                    return true;
+                return false;
+            });
+        }
+
+        if (filtered.length === 0 && query.trim() !== "") {
+            if (window.searchTimeoutID) {
+                clearTimeout(window.searchTimeoutID);
+                window.searchTimeoutID = false;
+            }
+            if (this.state.query !== this.props.media.query) {
+                window.searchTimeoutID = setTimeout(() => {
+                    this.setState({ query: this.props.media.query })
+                    this.props.searchMedia();
+                }, 500);
+            }
+
+        }
+
+        filtered.map((entry, entry_index) => {
+            return filteredList.push(<MediaEntry key={entry_index} name={entry.name} poster_image={entry.poster_image} />)
+        });
+
+        return filteredList;
     }
-
-
 
     render() {
         return (
@@ -65,14 +72,14 @@ class MediaListing extends Component {
                     <InfiniteScroll
                         pageStart={0}
                         loadMore={this.loadFunc}
-                        hasMore={this.state.hasMoreData}
+                        hasMore={(this.props.media.hasMoreData && this.props.media.query.length === 0) || !window.searchedFlag}
                         loader={<div className="loader" key={0}>Loading ...</div>}
                         threshold={600}
                         initialLoad={true}
                     >
-                        {Object.values(this.state.mediaList).map((entry, entry_index) => {
-                            return <MediaEntry key={entry_index} name={entry.name} poster_image={entry.poster_image} />
-                        })}
+                        {
+                            this.renderFilterdList()
+                        }
 
                     </InfiniteScroll>
                 </div>
@@ -81,4 +88,8 @@ class MediaListing extends Component {
     }
 }
 
-export default connect(null, {fetchMedia})(MediaListing);
+function mapStateToProps({ media }) {
+    return { media };
+}
+
+export default connect(mapStateToProps, { fetchMedia, searchMedia })(MediaListing);

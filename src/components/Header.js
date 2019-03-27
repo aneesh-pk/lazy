@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import '../App.css';
 import backImg from "../assets/images/Back.png";
 import searchImg from "../assets/images/search.png";
+import { connect } from "react-redux";
+import { searchMediaLocal } from "../actions";
 
 
 class Header extends Component {
@@ -29,6 +31,7 @@ class Header extends Component {
         }
 
         const handleSearchInput = (e) => {
+            this.props.searchMediaLocal(e.target.value);
             this.setState({
                 query: e.target.value
             })
@@ -46,7 +49,7 @@ class Header extends Component {
                     <input type="text"
                         className={this.state.searchActive ? "search active" : "search"}
                         onChange={handleSearchInput}
-                        value={this.state.query}
+                        value={this.props.media.query}
                     >
                     </input>
                     <img src={searchImg} className="search-button active" alt="search" onClick={handleSearchClick} />
@@ -56,4 +59,8 @@ class Header extends Component {
     }
 }
 
-export default Header;
+function mapStateToProps({ media }) {
+    return { media };
+}
+
+export default connect(mapStateToProps, { searchMediaLocal })(Header);
