@@ -1,11 +1,11 @@
 self.__precacheManifest = [
   {
-    "revision": "e27cdbec32c08a396667",
-    "url": "/lazy/static/css/main.218a6508.chunk.css"
+    "revision": "7dba51e1ccdc1e80b859",
+    "url": "/lazy/static/css/main.2f7f5e5e.chunk.css"
   },
   {
-    "revision": "e27cdbec32c08a396667",
-    "url": "/lazy/static/js/main.b0870001.chunk.js"
+    "revision": "7dba51e1ccdc1e80b859",
+    "url": "/lazy/static/js/main.4fc3b5d6.chunk.js"
   },
   {
     "revision": "432356865c7e6538d3e4",
@@ -16,7 +16,7 @@ self.__precacheManifest = [
     "url": "/lazy/static/js/2.a96fb576.chunk.js"
   },
   {
-    "revision": "3035a64a2e16c9db9f4de08fb0c4cdc9",
+    "revision": "3c3d86cfd60b1e9d772f07faaa49bc68",
     "url": "/lazy/index.html"
   }
 ];
