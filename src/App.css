@@ -68,3 +68,33 @@ body {
 .active{
     display: inline-block;
 }
+
+.search-wrapper{
+    display: table-cell;
+    vertical-align: middle;
+    text-align: right;
+}
+
+.page-title, .nav-back-wrapper{
+    height: 192px;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.search-wrapper{
+    width: 20vw;
+}
+
+.page-title{
+    padding-left: 30px;
+    width: 70vw;
+}
+
+.header{
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.table-cell-entry{
+    display: inline-block;
+}
