@@ -57,11 +57,22 @@ class MediaListing extends Component {
 
         }
 
-        filtered.map((entry, entry_index) => {
-            return filteredList.push(<MediaEntry key={entry_index} name={entry.name} poster_image={entry.poster_image} />)
-        });
+        let tmpFiltered = [];
+        while (filtered.length > 0) {
+            tmpFiltered.push(filtered.splice(0, 3))
+        }
 
-        return filteredList;
+        return tmpFiltered.map((entry_group, group_index) => {
+            {
+                return <div className="row" key={group_index}>
+                    {
+                        entry_group.map((entry, entry_index) => {
+                            return <MediaEntry key={entry_index} name={entry.name} poster_image={entry.poster_image} />
+                        })
+                    }
+                </div>
+            }
+        });
     }
 
     render() {

@@ -16,6 +16,7 @@ body {
     position: fixed;
     height: 192px;
     vertical-align: bottom;
+    z-index: 99;
 }
 
 .page-title {
@@ -35,7 +36,6 @@ body {
 }
 
 .media-entry {
-    margin-right: 30px;
     margin-bottom: 90px;
 }
 
