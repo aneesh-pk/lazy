@@ -7,7 +7,7 @@ import MediaImage from "./MediaImage";
 class MediaEntry extends Component {
     render() {
         return (
-            <div className="media-entry inline-block col-md-4 col-sm-12 text-center">
+            <div className="media-entry inline-block col-4 text-center">
                 <div className="poster-wrapper">
                     {/* <Suspense fallback={<MediaImagePlaceholder />}> */}
                         <MediaImage poster_image={this.props.poster_image} />

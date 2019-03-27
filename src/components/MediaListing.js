@@ -52,7 +52,7 @@ class MediaListing extends Component {
                 window.searchTimeoutID = setTimeout(() => {
                     this.setState({ query: this.props.media.query })
                     this.props.searchMedia();
-                }, 500);
+                }, 200);
             }
 
         }

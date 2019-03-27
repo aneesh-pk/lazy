@@ -3,16 +3,15 @@ body {
 }
 
 .page-wrapper {
-    width: calc(100vw - 60px);
+    width: calc(100vw - 30px);
     height: 100vh;
     padding-left: 30px;
-    padding-right: 30px;
 }
 
 .header {
     background: url("assets/images/nav_bar.png") no-repeat;
     background-size: cover;
-    width: calc(100vw - 60px);
+    width: calc(100vw - 30px);
     position: fixed;
     height: 192px;
     vertical-align: bottom;
@@ -21,6 +20,7 @@ body {
 
 .page-title {
     color: white;
+    font-size: 1em;
 }
 
 .inline-block {
@@ -29,6 +29,13 @@ body {
 
 .right {
     float: right;
+}
+
+.back-button, .search-button{
+    width: 100%;
+    display: block;
+    max-width: 20px;
+    min-width: 15px;
 }
 
 .media-listing {
@@ -40,9 +47,8 @@ body {
 }
 
 .poster{
-    width: 100%;
-    max-height: 272px;
-    max-width: 182px;
+    max-width: 100%; 
+    height: auto;
 }
 
 .poster-wrapper {
@@ -69,16 +75,6 @@ body {
     display: inline-block;
 }
 
-.page-title, .nav-back-wrapper, .display-input-wrapper, .search-button-wrapper{
-    height: 192px;
-    display: table-cell;
-    vertical-align: middle;
-}
-
-.page-title{
-    padding-left: 30px;
-}
-
 .header{
     vertical-align: middle;
 }
@@ -87,8 +83,28 @@ body {
     display: table-cell;
 }
 
-@media (max-width: 767px) {
 .search-wrapper{
-    display: none;
-} 
+    margin-top: 70px;
+}
+
+#search-input{
+    width: 100%;
+}
+
+.margin-top-70{
+    margin-top: 70px;
+}
+
+
+
+@media screen and (min-width: 437px) {
+  .page-title  * {
+    font-size: 15px;
+  }
+}
+
+@media screen and (max-width: 436px) {
+  .page-title  * {
+    font-size: 10px;
+  }
 }
