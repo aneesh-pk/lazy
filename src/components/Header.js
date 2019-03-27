@@ -17,11 +17,15 @@ class Header extends Component {
 
     render() {
         const handleSearchClick = () => {
+        
             if (!this.state.searchActive) {
                 this.setState({
                     searchActive: true,
                     query: ""
                 });
+                setImmediate(() => {
+                    document.getElementById("search-input").focus();
+                })
             } else {
                 this.setState({
                     searchActive: false,
@@ -47,6 +51,7 @@ class Header extends Component {
                 </div>
                 <div className="search-wrapper inline-block right">
                     <input type="text"
+                        id="search-input"
                         className={this.state.searchActive ? "search active" : "search"}
                         onChange={handleSearchInput}
                         value={this.props.media.query}
