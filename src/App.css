@@ -99,13 +99,13 @@ body {
 
 
 @media screen and (min-width: 437px) {
-  .page-title  * {
+  .page-title  * , .poster-title{
     font-size: 15px;
   }
 }
 
 @media screen and (max-width: 436px) {
-  .page-title  * {
+  .page-title  * , .poster-title{
     font-size: 10px;
   }
 }
