@@ -43,7 +43,7 @@ class Header extends Component {
 
         return (
             <div className="header row">
-                <div className="col-md-6 col-sm-6">
+                <div className="col-md-6 col-sm-12">
                     <div className="nav-back-wrapper inline-block">
                         <div className="table-cell-entry">
                             <img src={backImg} className="back-button" alt="back" />
@@ -56,8 +56,7 @@ class Header extends Component {
                     </div>
                 </div>
 
-                <div className="inline-block col-md-6 col-sm-6">
-
+                <div className="search-wrapper inline-block col-md-6 col-sm-12">
                     <div className="row">
                         <div className="col-sm-12 table-cell">
                             <div className="display-input-wrapper col-sm-10 text-right">
