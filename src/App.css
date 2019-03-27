@@ -70,31 +70,35 @@ body {
 }
 
 .search-wrapper{
-    display: table-cell;
+    /* display: table-cell;
     vertical-align: middle;
-    text-align: right;
+    text-align: right; */
 }
 
-.page-title, .nav-back-wrapper{
+.page-title, .nav-back-wrapper, .display-input-wrapper, .search-button-wrapper{
     height: 192px;
     display: table-cell;
     vertical-align: middle;
 }
 
 .search-wrapper{
-    width: 20vw;
+    /* width: 20vw; */
 }
 
 .page-title{
     padding-left: 30px;
-    width: 70vw;
+    /* width: 70vw; */
 }
 
 .header{
-    display: table-cell;
+    /* display: table-cell; */
     vertical-align: middle;
 }
 
+.table-cell{
+    display: table-cell;
+}
+
 .table-cell-entry{
-    display: inline-block;
+    /* display: inline-block; */
 }

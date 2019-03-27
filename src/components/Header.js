@@ -42,31 +42,38 @@ class Header extends Component {
         }
 
         return (
-            <div className="header">
-                <div className="nav-back-wrapper inline-block">
-                    <div className="table-cell-entry">
-                        <img src={backImg} className="back-button" alt="back" />
+            <div className="header row">
+                <div className="col-sm-6">
+                    <div className="nav-back-wrapper inline-block">
+                        <div className="table-cell-entry">
+                            <img src={backImg} className="back-button" alt="back" />
+                        </div>
+                    </div>
+                    <div className="page-title inline-block">
+                        <div className="table-cell-entry">
+                            Romantic Comedy
+                    </div>
                     </div>
                 </div>
-                <div className="page-title inline-block">
-                    <div className="table-cell-entry">
-                        Romantic Comedy
-                    </div>
-                </div>
-                <div className="search-wrapper inline-block">
-                    <div className="table-cell-entry">
-                        <div className="display-input-wrapper inline-block">
-                            <input type="text"
-                                id="search-input"
-                                className={this.state.searchActive ? "search active" : "search"}
-                                onChange={handleSearchInput}
-                                value={this.props.media.query}
-                            />
-                        </div>
-                        <div className="search-button-wrapper inline-block">
-                            <img src={searchImg} className="search-button active" alt="search" onClick={handleSearchClick} />
-                        </div>
 
+                <div className="inline-block col-sm-6">
+
+                    <div className="row">
+                        <div className="col-sm-12 table-cell">
+                            <div className="display-input-wrapper col-sm-10 text-right">
+                                <input type="text"
+                                    id="search-input"
+                                    className={this.state.searchActive ? "search active" : "search"}
+                                    onChange={handleSearchInput}
+                                    value={this.props.media.query}
+                                />
+                            </div>
+                            <div className="search-button-wrapper col-sm-2">
+                                <div>
+                                    <img src={searchImg} className="search-button active" alt="search" onClick={handleSearchClick} />
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
